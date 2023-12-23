@@ -1,5 +1,16 @@
+import {
+  char,
+  createRegExp,
+  exactly,
+  letter,
+  maybe,
+  not,
+  oneOrMore,
+  whitespace,
+} from 'magic-regexp'
+
 export interface Message {
-  tags: Record<string, string>
+  tags: Record<Tag, string>
   src?: string
   command?: string
   channel?: string
@@ -25,13 +36,23 @@ function parseEvent(event: string) {
   return event.split('\r\n').filter(Boolean)
 }
 
+const TAGS = ['display-name', 'emotes', 'subscriber', 'mod'] as const
+type Tag = typeof TAGS[number]
+function isTag(t: string | Tag): t is Tag {
+  return TAGS.includes(t as Tag)
+}
+
 /**
  * Transforms a Message tags string into Tags object
  */
 function parseTags(tags: string = '') {
   return Object.fromEntries(
-    tags.split(';').map(t => t.split('=')) ?? [],
-  ) as Record<string, string>
+    tags
+      .split(';')
+      .map(t => t.split('='))
+      .filter(t => isTag(t[0]))
+      ?? [],
+  ) as Record<Tag, string>
 }
 
 /**

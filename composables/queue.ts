@@ -1,12 +1,12 @@
-export function useQueue<T = MaybeRefOrGetter<unknown>>(length: number) {
+export function useQueue<T>(length: number) {
   const queue = ref([]) as Ref<T[]>
 
-  const push = (v: T) => {
-    const c = toValue(v)
-    if (c)
+  function push(v: T) {
+    if (v)
       queue.value.push(v)
   }
-  const clear = () => {
+
+  function clear() {
     queue.value = []
   }
 
