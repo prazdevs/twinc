@@ -31,7 +31,7 @@ function parseEvent(event: string) {
 function parseTags(tags: string = '') {
   return Object.fromEntries(
     tags.split(';').map(t => t.split('=')) ?? [],
-  )
+  ) as Record<string, string>
 }
 
 /**
