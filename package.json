@@ -1,0 +1,24 @@
+{
+  "name": "twink",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "^2.4.6",
+    "@nuxt/devtools": "latest",
+    "@vueuse/nuxt": "^10.7.0",
+    "eslint": "^8.56.0",
+    "magic-regexp": "^0.7.0",
+    "nuxt": "^3.8.2",
+    "vue": "^3.3.12",
+    "vue-router": "^4.2.5"
+  }
+}
