@@ -1,7 +1,7 @@
 export function useQueue<T>(length: number) {
   const queue = ref([]) as Ref<T[]>
 
-  function push(v: T) {
+  function push(v?: T) {
     if (v)
       queue.value.push(v)
   }

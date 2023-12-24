@@ -1,8 +1,7 @@
 const TWITCH_IRC = 'ws://irc-ws.chat.twitch.tv'
 
 export function useChat(channel: MaybeRefOrGetter<string>) {
-  const { parseEvent, parseMessage } = useParser()
-  const { push, queue } = useQueue<Message>(5)
+  const { push, queue } = useQueue<TwitchMessage>(5)
 
   function onConnected(ws: WebSocket) {
     ws.send(`NICK ${generateUsername()}`)
@@ -11,17 +10,16 @@ export function useChat(channel: MaybeRefOrGetter<string>) {
   }
 
   function onMessage(ws: WebSocket, { data }: MessageEvent<string>) {
-    const messages = parseEvent(data)
+    const ircMessages = data.split('\r\n').filter(Boolean)
 
-    for (const m of messages) {
-      const message = parseMessage(m)
-      if (message) {
-        if (message.command === 'PING')
-          ws.send(`PONG :${message.message}`)
+    for (const m of ircMessages) {
+      const message = parseIrcMessage(m)
 
-        if (message.command === 'PRIVMSG')
-          push(message)
-      }
+      if (message?.command === 'PING')
+        ws.send(`PONG :${message.message}`)
+
+      if (message?.command === 'PRIVMSG')
+        push(createTwitchMessage(message))
     }
   }
 

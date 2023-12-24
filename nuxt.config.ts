@@ -4,5 +4,6 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   modules: [
     '@vueuse/nuxt',
+    'magic-regexp/nuxt',
   ],
 })

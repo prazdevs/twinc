@@ -15,10 +15,7 @@ const { open, close, queue } = useChat(channel)
     </button>
     <div>
       <div v-for="m, i in queue" :key="i">
-        <span v-if="m.tags.mod === '1'">⚔️</span>
-        <span v-if="m.tags.subscriber === '1'">⭐</span>
-        <b>{{ `${m.tags['display-name']}: ` }}</b>
-        <span>{{ m.message }}</span>
+        <b>{{ m.username }}</b><span>{{ m.message }}</span>
       </div>
     </div>
   </div>
