@@ -38,7 +38,7 @@ export function parseIrcMessage(message: string) {
   }
 }
 
-export type IrcMessage = ReturnType<typeof parseIrcMessage>
+export type IrcMessage = NonNullable<ReturnType<typeof parseIrcMessage>>
 
 /**
  * Parses Twitch IRC message tags

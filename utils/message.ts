@@ -1,4 +1,4 @@
-export function createTwitchMessage(source: NonNullable<IrcMessage>) {
+export function createTwitchMessage(source: IrcMessage) {
   const tags = parseIrcTags(source.tags)
 
   return {
