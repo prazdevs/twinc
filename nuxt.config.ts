@@ -6,4 +6,8 @@ export default defineNuxtConfig({
     '@vueuse/nuxt',
     'magic-regexp/nuxt',
   ],
+  routeRules: {
+    '/**': { ssr: false },
+    '/api/**': { ssr: true }
+  }
 })
