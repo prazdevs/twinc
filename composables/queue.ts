@@ -18,7 +18,7 @@ export function useQueue<T>(length: number) {
   })
 
   return {
-    queue: readonly(queue),
+    queue,
     push,
     clear,
   }
