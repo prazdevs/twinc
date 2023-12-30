@@ -68,7 +68,7 @@ export function parseIrcEmotes(tag: string) {
         const [from, to] = p.split('-', 2).map(Number)
         return { id, from, to }
       })
-    })
+    }).sort(({ from: a }, { from: b }) => a - b)
     ?? []
 }
 
