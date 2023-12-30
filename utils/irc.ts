@@ -47,6 +47,29 @@ export type IrcMessage = NonNullable<ReturnType<typeof parseIrcMessage>>
 export function parseIrcTags(tags: string): Record<string, string> {
   return tags
     .split(';')
-    .map(t => t.split('=', 2))
-    .reduce((t, [k, v]) => ({ ...t, [k]: v }), {})
+    .map(tag => tag.split('=', 2))
+    .reduce((tag, [key, value]) => ({ ...tag, [key]: value }), {})
 }
+
+/**
+ * Parses Twitch IRC emotes tag into list
+ * @see https://dev.twitch.tv/docs/irc/tags/#privmsg-tags
+ */
+export function parseIrcEmotes(tag: string) {
+  return tag
+    .match(createRegExp(
+      exactly(word, ':', oneOrMore(digit), '-', oneOrMore(digit)),
+      maybe(oneOrMore(',', oneOrMore(digit), '-', oneOrMore(digit))),
+      ['g'],
+    ))
+    ?.flatMap((emote) => {
+      const [id, position] = emote.split(':', 2)
+      return position.split(',').map((p) => {
+        const [from, to] = p.split('-', 2).map(Number)
+        return { id, from, to }
+      })
+    })
+    ?? []
+}
+
+export type IrcEmote = ReturnType<typeof parseIrcEmotes>[number]
