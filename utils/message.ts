@@ -17,7 +17,7 @@ export type TwitchMessage = ReturnType<typeof createTwitchMessage>
  * Generates a flat AST from a Twitch message and emotes
  */
 export function tokenizeMessage({ emotes, message }: TwitchMessage) {
-  const tokens = [] as Array<{ type: string, content: string }>
+  const tokens = [] as Array<{ type: 'text' | 'emote', content: string }>
   let index = 0
 
   for (const { from, to, id } of emotes) {
@@ -25,7 +25,7 @@ export function tokenizeMessage({ emotes, message }: TwitchMessage) {
       tokens.push({ type: 'text', content: message.slice(index, from) })
     tokens.push({ type: 'emote', content: id })
 
-    index = to
+    index = to + 1
   }
 
   if (index < message.length)
