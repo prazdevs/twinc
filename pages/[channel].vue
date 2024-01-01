@@ -10,7 +10,7 @@ onMounted(open)
 <template>
   <div>
     <div>
-      <TwitchMessage v-for="m in queue" :key="m.message" :message="m" />
+      <TwitchMessage v-for="m in queue" :key="m.id" :message="m" />
     </div>
   </div>
 </template>

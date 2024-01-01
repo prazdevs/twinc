@@ -1,3 +1,5 @@
+import { nanoid } from 'nanoid'
+
 /**
  * Creates a readable Message object from an IRC message
  */
@@ -6,6 +8,7 @@ export function createTwitchMessage(source: IrcMessage) {
   const emotes = parseIrcEmotes(tags.emotes)
 
   return {
+    id: nanoid(),
     username: tags['display-name'],
     emotes,
     message: source.message,

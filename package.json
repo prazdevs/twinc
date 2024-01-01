@@ -17,6 +17,7 @@
     "@vueuse/nuxt": "^10.7.1",
     "eslint": "^8.56.0",
     "magic-regexp": "^0.7.0",
+    "nanoid": "^5.0.4",
     "nuxt": "^3.9.0",
     "vue": "^3.3.13",
     "vue-router": "^4.2.5"

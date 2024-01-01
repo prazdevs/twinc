@@ -1,6 +1,8 @@
+import { customAlphabet } from 'nanoid'
+
 /**
  * Generates an anonymous Twitch IRC username
  */
 export function generateUsername() {
-  return `justinfan${Math.floor(100000 + Math.random() * 900000)}`
+  return `justinfan${customAlphabet('1234567890', 6)}`
 }

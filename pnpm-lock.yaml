@@ -20,6 +20,9 @@ devDependencies:
   magic-regexp:
     specifier: ^0.7.0
     version: 0.7.0
+  nanoid:
+    specifier: ^5.0.4
+    version: 5.0.4
   nuxt:
     specifier: ^3.9.0
     version: 3.9.0(eslint@8.56.0)(typescript@5.3.3)(vite@5.0.10)
@@ -5030,6 +5033,12 @@ packages:
   /nanoid@4.0.2:
     resolution: {integrity: sha512-7ZtY5KTCNheRGfEFxnedV5zFiORN1+Y1N6zvPTnHQd8ENUvfaDBeuJDZb2bN/oXwXxu3qkTXDzy57W5vAmDTBw==}
     engines: {node: ^14 || ^16 || >=18}
+    hasBin: true
+    dev: true
+
+  /nanoid@5.0.4:
+    resolution: {integrity: sha512-vAjmBf13gsmhXSgBrtIclinISzFFy22WwCYoyilZlsrRXNIHSwgFQ1bEdjRwMT3aoadeIF6HMuDRlOxzfXV8ig==}
+    engines: {node: ^18 || >=20}
     hasBin: true
     dev: true
 
