@@ -1,4 +1,4 @@
-const TWITCH_IRC = 'ws://irc-ws.chat.twitch.tv'
+const TWITCH_IRC = 'wss://irc-ws.chat.twitch.tv'
 
 export function useChat(channel: MaybeRefOrGetter<string>) {
   const { push, queue } = useQueue<TwitchMessage>(5)
